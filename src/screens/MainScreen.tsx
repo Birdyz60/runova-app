@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { View, Text, StyleSheet, Pressable, Modal } from 'react-native';
+import theme from '../theme';
 
 const MainScreen = () => {
   const [modalVisible, setModalVisible] = useState(false);
@@ -65,15 +66,15 @@ const MainScreen = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#101010',
+    backgroundColor: theme.colors.background,
     paddingTop: 50,
-    paddingHorizontal: 20,
+    paddingHorizontal: theme.spacing.md,
   },
   title: {
     marginTop: 80,
-    fontSize: 22,
-    color: '#ffffff',
-    fontWeight: '600',
+    fontSize: theme.typography.title.fontSize,
+    color: theme.colors.text,
+    fontWeight: theme.typography.title.fontWeight,
     alignSelf: 'center',
   },
   settingsButton: {
@@ -84,7 +85,7 @@ const styles = StyleSheet.create({
   },
   settingsText: {
     fontSize: 24,
-    color: '#fff',
+    color: theme.colors.text,
   },
   modalOverlay: {
     flex: 1,
@@ -93,9 +94,9 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   modalContent: {
-    backgroundColor: '#fff',
-    padding: 25,
-    borderRadius: 8,
+    backgroundColor: theme.colors.text,
+    padding: theme.spacing.lg,
+    borderRadius: theme.spacing.sm,
     minWidth: '70%',
     alignItems: 'center',
   },
@@ -106,12 +107,12 @@ const styles = StyleSheet.create({
   },
   closeButton: {
     backgroundColor: '#101010',
-    paddingVertical: 8,
-    paddingHorizontal: 20,
-    borderRadius: 6,
+    paddingVertical: theme.spacing.sm,
+    paddingHorizontal: theme.spacing.md,
+    borderRadius: theme.spacing.sm,
   },
   closeButtonText: {
-    color: '#fff',
+    color: theme.colors.text,
   },
   profileButton: {
     position: 'absolute',
@@ -121,7 +122,7 @@ const styles = StyleSheet.create({
   },
   profileText: {
     fontSize: 24,
-    color: '#fff',
+    color: theme.colors.text,
   },
 });
 
