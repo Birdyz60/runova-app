@@ -28,10 +28,21 @@ jobs:
           distribution: 'temurin'
           java-version: '17'
 
+      - name: Decode keystore from base64
+        run: |
+          echo "${{ secrets.KEYSTORE_BASE64 }}" | base64 -d > android/app/runova-release.keystore
+
+      - name: Configure signing properties
+        run: |
+          echo "MYAPP_UPLOAD_STORE_FILE=runova-release.keystore" >> android/gradle.properties
+          echo "MYAPP_UPLOAD_KEY_ALIAS=${{ secrets.KEY_ALIAS }}" >> android/gradle.properties
+          echo "MYAPP_UPLOAD_STORE_PASSWORD=${{ secrets.KEYSTORE_PASSWORD }}" >> android/gradle.properties
+          echo "MYAPP_UPLOAD_KEY_PASSWORD=${{ secrets.KEY_PASSWORD }}" >> android/gradle.properties
+
       - name: Make gradlew executable
         run: chmod +x android/gradlew
 
-      - name: Build release APK
+      - name: Build signed APK
         working-directory: android
         run: ./gradlew assembleRelease
 
