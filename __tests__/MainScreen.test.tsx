@@ -17,4 +17,13 @@ describe('MainScreen', () => {
 
     expect(queryByText(/options.*bientôt/i)).toBeTruthy();
   });
+
+  it('devrait afficher une popup quand on appuie sur le bouton profil', () => {
+    const { getByTestId, queryByText } = render(<MainScreen />);
+    expect(queryByText(/profil.*bientôt/i)).toBeNull();
+
+    fireEvent.press(getByTestId('profile-button'));
+
+    expect(queryByText(/profil.*bientôt/i)).toBeTruthy();
+  });
 });
