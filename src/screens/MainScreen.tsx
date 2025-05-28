@@ -3,6 +3,7 @@ import { View, Text, StyleSheet, Pressable, Modal } from 'react-native';
 
 const MainScreen = () => {
   const [modalVisible, setModalVisible] = useState(false);
+  const [profileModalVisible, setProfileModalVisible] = useState(false);
 
   return (
     <View style={styles.container} testID="main-screen">
@@ -13,6 +14,14 @@ const MainScreen = () => {
         testID="settings-button"
       >
         <Text style={styles.settingsText}>⚙️</Text>
+      </Pressable>
+
+      <Pressable
+        onPress={() => setProfileModalVisible(true)}
+        style={styles.profileButton}
+        testID="profile-button"
+      >
+        <Text style={styles.profileText}>👤</Text>
       </Pressable>
 
       <Text style={styles.title}>Bienvenue sur Runova</Text>
@@ -28,6 +37,22 @@ const MainScreen = () => {
           <View style={styles.modalContent}>
             <Text style={styles.modalText}>L’écran des options arrivera bientôt.</Text>
             <Pressable onPress={() => setModalVisible(false)} style={styles.closeButton}>
+              <Text style={styles.closeButtonText}>Fermer</Text>
+            </Pressable>
+          </View>
+        </View>
+      </Modal>
+
+      <Modal
+        visible={profileModalVisible}
+        transparent
+        animationType="fade"
+        onRequestClose={() => setProfileModalVisible(false)}
+      >
+        <View style={styles.modalOverlay}>
+          <View style={styles.modalContent}>
+            <Text style={styles.modalText}>L’écran du profil utilisateur arrivera bientôt.</Text>
+            <Pressable onPress={() => setProfileModalVisible(false)} style={styles.closeButton}>
               <Text style={styles.closeButtonText}>Fermer</Text>
             </Pressable>
           </View>
@@ -86,6 +111,16 @@ const styles = StyleSheet.create({
     borderRadius: 6,
   },
   closeButtonText: {
+    color: '#fff',
+  },
+  profileButton: {
+    position: 'absolute',
+    top: 50,
+    left: 20,
+    zIndex: 10,
+  },
+  profileText: {
+    fontSize: 24,
     color: '#fff',
   },
 });
